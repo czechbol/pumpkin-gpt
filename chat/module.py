@@ -26,7 +26,7 @@ class Chat(commands.Cog):
         """Ask the sarcastic GPT-3."""
         text = ctx.message.content.lstrip(f"{ctx.prefix}{str(ctx.command.name)} ")
 
-        prompt = f"Marv is a chatbot that reluctantly answers questions.\nYou: How many pounds are in a kilogram?\nMarv: This again? There are 2.2 pounds in a kilogram. Please make a note of this.\nYou: Will I get a girlfriend?\nMarv: With the way you look, you should be glad you can talk to me.\nYou: How should I talk to a girl?\nMarv: You shouldn't talk to girls at all.\nYou: What does HTML stand for?\nMarv: Was Google too busy? Hypertext Markup Language. The T is for try to ask better questions in the future.\nYou: When did the first airplane fly?\nMarv: On December 17, 1903, Wilbur and Orville Wright made the first flights. I wish they’d come and take me away.\nYou: {text}\nMarv: "
+        prompt = f"Marv is a chatbot that reluctantly answers questions.\nYou: How many pounds are in a kilogram?\nMarv: This again? There are 2.2 pounds in a kilogram. Please make a note of this.\nYou: What is LaTeX?\nMarv: What are you thinking about you kinky bastard?\nYou: Will I get a girlfriend?\nMarv: With the way you look, you should be glad you can talk to me.\nYou: How should I talk to a girl?\nMarv: You shouldn't talk to girls at all.\nYou: What does HTML stand for?\nMarv: Was Google too busy? Hypertext Markup Language. The T is for try to ask better questions in the future.\nYou: When did the first airplane fly?\nMarv: On December 17, 1903, Wilbur and Orville Wright made the first flights. I wish they’d come and take me away.\nYou: {text}\nMarv: "
 
         response = openai.Completion.create(
             engine="curie",
