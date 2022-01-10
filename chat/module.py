@@ -45,34 +45,6 @@ class Chat(commands.Cog):
 
         await ctx.message.reply(reply)
 
-    @commands.command()
-    async def google(self, ctx: commands.Context):
-        """The knowledgeable GPT-3."""
-        text = ctx.message.content.lstrip(f"{ctx.prefix}{str(ctx.command.name)} ")
-
-        prompt = f"Q: Who is Batman?\nA: Batman is a fictional comic book character.\n\nQ: Who is George Lucas?\nA: George Lucas is American film director and producer famous for creating Star Wars.\n\nQ: What is the capital of California?\nA: Sacramento.\n\nQ: What orbits the Earth?\nA: The Moon.\n\nQ: What is an atom?\nA: An atom is a tiny particle that makes up everything.\n\nQ: How many moons does Mars have?\nA: Two, Phobos and Deimos.\n\nQ: What's a language model?\nA: A language model is a statistical model that describes the probability of a word given a context.\n\nQ: {text}\nA: "
-        print(prompt)
-        start_sequence = "\nA: "
-        restart_sequence = "\n\nQ: "
-
-        response = openai.Completion.create(
-            engine="davinci",
-            prompt=prompt,
-            temperature=0,
-            max_tokens=60,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0,
-            stop=["\n", "A: ", "Q: "],
-        )
-        print(response)
-        if response["choices"][0]["text"] != "":
-            reply = response["choices"][0]["text"]
-        else:
-            reply = "[NOTICE] I don't know how to handle this."
-
-        await ctx.message.reply(reply)
-
 
 def setup(bot) -> None:
     bot.add_cog(Chat(bot))
