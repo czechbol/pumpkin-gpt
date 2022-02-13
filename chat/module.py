@@ -51,6 +51,7 @@ class Chat(commands.Cog):
     # COMMANDS
 
     @commands.cooldown(rate=1, per=30.0, type=commands.BucketType.user)
+    @check.acl2(check.ACLevel.MEMBER)
     @commands.command()
     async def ask(self, ctx: commands.Context):
         """Ask the sarcastic GPT-3."""
