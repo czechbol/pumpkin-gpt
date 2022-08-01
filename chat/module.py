@@ -1,7 +1,7 @@
 import os
 
 import openai
-from nextcord.ext import commands
+from discord.ext import commands
 
 from pie import i18n, logger
 
