@@ -1,16 +1,16 @@
 import os
 
-import openai
+import gpt
 from discord.ext import commands
 
 from pie import i18n, logger
 
 
-_ = i18n.Translator("modules/gpt3").translate
+_ = i18n.Translator("modules/gpt").translate
 bot_log = logger.Bot.logger()
 guild_log = logger.Guild.logger()
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+gpt.api_key = os.getenv("OPENAI_API_KEY")
 
 
 class Chat(commands.Cog):
@@ -65,7 +65,7 @@ class Chat(commands.Cog):
             prompt += f"\n{d['type'].capitalize()}: {d['message']}"
         prompt += "\nMarv: "
 
-        response = openai.Completion.create(
+        response = gpt.Completion.create(
             engine="curie",
             prompt=prompt,
             temperature=0.3,
