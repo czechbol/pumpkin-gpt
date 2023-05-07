@@ -33,9 +33,13 @@ class Speak(commands.Cog):
     async def speak(self, ctx: commands.Context):
         """What should BolGPT say?"""
         async with ctx.typing():
-            text = ctx.message.content.lstrip(f"{ctx.prefix}").lstrip(f"{str(ctx.command.name)} ")
+            text = ctx.message.content.lstrip(f"{ctx.prefix}").lstrip(
+                f"{str(ctx.command.name)} "
+            )
 
-            input_ids = self.tokenizer.encode("<|endoftext|>" + text, return_tensors="pt").to(self.device)
+            input_ids = self.tokenizer.encode(
+                "<|endoftext|>" + text, return_tensors="pt"
+            ).to(self.device)
             sample_output = self.model.generate(
                 input_ids,
                 pad_token_id=0,
@@ -46,8 +50,13 @@ class Speak(commands.Cog):
                 temperature=0.9,
             )[0]
             output: str = self.tokenizer.decode(sample_output.tolist())
-            reply = "\n".join(output.split("\n")[:2]).replace('<|endoftext|>', '')
-        await ctx.message.reply(discord.utils.escape_mentions(reply))
+            reply = "\n".join(output.split("\n")[:2]).replace("<|endoftext|>", "")
+        await ctx.message.reply(
+            reply,
+            allowed_mentions=discord.AllowedMentions(
+                everyone=False, users=False, roles=False, replied_user=True
+            ),
+        )
 
 
 async def setup(bot) -> None:
