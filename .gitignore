@@ -128,5 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-say/models/*
-!say/models/README.md
+speak/models/*
+!speak/models/README.md
