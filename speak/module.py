@@ -30,13 +30,9 @@ class Speak(commands.Cog):
     @commands.cooldown(rate=1, per=2.0, type=commands.BucketType.user)
     @check.acl2(check.ACLevel.MEMBER)
     @commands.command()
-    async def speak(self, ctx: commands.Context):
+    async def speak(self, ctx: commands.Context, *, text: str):
         """What should GPT say?"""
         async with ctx.typing():
-            text = ctx.message.content.lstrip(f"{ctx.prefix}").lstrip(
-                f"{str(ctx.command.name)} "
-            )
-
             input_ids = self.tokenizer.encode(
                 "<|endoftext|>" + text, return_tensors="pt"
             ).to(self.device)
