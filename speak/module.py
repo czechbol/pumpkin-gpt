@@ -31,7 +31,7 @@ class Speak(commands.Cog):
     @check.acl2(check.ACLevel.MEMBER)
     @commands.command()
     async def speak(self, ctx: commands.Context):
-        """What should BolGPT say?"""
+        """What should GPT say?"""
         async with ctx.typing():
             text = ctx.message.content.lstrip(f"{ctx.prefix}").lstrip(
                 f"{str(ctx.command.name)} "
